@@ -1,18 +1,19 @@
 package Modelo;
 
-import com.sun.istack.internal.NotNull;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorValue;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
+@PrimaryKeyJoinColumn(name="PESSOA_ID")
 //@DiscriminatorValue("PESSOA_TIPO")
 public class Paciente extends Pessoa{
-    @NotNull
+    @Column(nullable = false)
     private String convenio;
     private Boolean fuma;
     private Boolean bebe;
@@ -126,7 +127,7 @@ public class Paciente extends Pessoa{
                 +"\nEndereço: "+super.getEndereco()
                 +"\nCpf: "+super.getCpf()
                 +"\nTelefone fixo: "+super.getTelefoneFixo();
-                ;
+                
         return toReturn;
     }
     

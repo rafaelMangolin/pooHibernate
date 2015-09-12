@@ -1,21 +1,18 @@
 package Modelo;
 
-import com.sun.istack.internal.NotNull;
 import java.util.Date;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
+@PrimaryKeyJoinColumn(name="USUARIO_ID")
 //@Inheritance(strategy = InheritanceType.JOINED)
 //@DiscriminatorValue("USUARIO_TIPO")
 public class Medico extends Usuario {
-    @NotNull
+    @Column(nullable = false)
     private String crm;
-    @NotNull
+    @Column(nullable = false)
     private String especializacao;
 
     public Medico() {

@@ -37,7 +37,6 @@ public class Clinica {
                 em.persist(secretaria);
 
                 em.getTransaction().commit();
-
                 Login tela = new Login();
 
                 tela.setVisible(true);

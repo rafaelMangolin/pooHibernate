@@ -2,8 +2,11 @@ package Modelo;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
+@PrimaryKeyJoinColumn(name="USUARIO_ID")
+
 public class Secretaria extends Usuario{
 
     public Secretaria() {

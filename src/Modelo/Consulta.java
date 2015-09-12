@@ -1,9 +1,10 @@
 package Modelo;
 
 import Util.DataHoraUtil;
-import com.sun.istack.internal.NotNull;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -12,15 +13,15 @@ import javax.persistence.TemporalType;
 public class Consulta extends Entidade{
     @Temporal(value=TemporalType.DATE)
     private Date data;
-    @NotNull
+    @Column(nullable = false)
     private String hora;
-    @NotNull
+    @JoinColumn(nullable = false)
     @ManyToOne
     private Medico medico;
-    @NotNull
+    @JoinColumn(nullable = false)
     @ManyToOne
     private Paciente paciente;
-    @NotNull
+    @Column(nullable = false)
     private String tipo;
 
     public Consulta() {

@@ -1,9 +1,7 @@
 package Modelo;
 
-import com.sun.istack.internal.NotNull;
 import java.util.Date;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorValue;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -17,9 +15,9 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name="PESSOA_ID")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario extends Pessoa{
-    @NotNull
+    @Column(nullable = false)
     private String login;
-    @NotNull
+    @Column(nullable = false)
     private String senha;
 
     public Usuario() {

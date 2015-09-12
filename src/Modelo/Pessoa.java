@@ -1,10 +1,7 @@
 package Modelo;
 
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -22,15 +19,22 @@ import javax.persistence.TemporalType;
 //@DiscriminatorValue("ENTIDADE_TIPO")
 //@DiscriminatorColumn(name = "PESSOA_TIPO")
 public class Pessoa extends Entidade {
+    @Column(nullable = false)
     private String nome;
     private String sobrenome;
+    @Column(nullable = false)
     @Temporal(value = TemporalType.DATE)
     private Date dataNascimento;
+    @Column(nullable = false)
     private String telefoneFixo;
     private String telefoneCelular;
+    @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
     private String endereco;
+    @Column(nullable = false)
     private String cpf;
+    @Column(nullable = false)
     private String rg;
 
     public Pessoa(){

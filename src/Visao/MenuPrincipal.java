@@ -19,7 +19,7 @@ public class MenuPrincipal extends JFrame {
     
     public MenuPrincipal(Usuario usuario) {
         initComponents();
-        controleMensagem.enviarMensagens(DataHoraUtil.pegarDataProximoDia());
+//        controleMensagem.enviarMensagens(DataHoraUtil.pegarDataProximoDia());
         this.usuario = usuario;
         if(this.usuario.getClass() == Medico.class){
             menuAgenda.setVisible(false);

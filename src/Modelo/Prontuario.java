@@ -1,7 +1,7 @@
 package Modelo;
 
-import com.sun.istack.internal.NotNull;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
@@ -9,9 +9,9 @@ import javax.persistence.ManyToOne;
 public class Prontuario extends Entidade{
    
     private List<String> sintoma;
-    @NotNull
+    @Column(nullable = false)
     private String diagnostico;
-    @NotNull
+    @Column(nullable = false)
     private String tratamento;
     @ManyToOne
     private Paciente paciente;
