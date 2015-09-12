@@ -1,0 +1,6 @@
+/nbproject/private/
+
+**/*.class
+*.class
+.class
+/dist/
