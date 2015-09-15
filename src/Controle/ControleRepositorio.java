@@ -7,6 +7,7 @@ import Modelo.Secretaria;
 import clinica.UnidadePersistencia;
 import java.util.Collection;
 import javax.persistence.EntityManager;
+import org.eclipse.persistence.sessions.Session;
 
 public class ControleRepositorio {
 
@@ -33,16 +34,10 @@ public class ControleRepositorio {
 
     public Collection<Medico> pegarValoresMedico() {
         em.getTransaction().begin();
-        String query = "select a.LOGIN, a.SENHA, m.CRM, m.ESPECIALIZACAO,"
-                + "p.CPF,p.DATANASCIMENTO,p.EMAIL,p.ENDERECO,p.NOME,p.RG,"
-                + "p.SOBRENOME,p.TELEFONECELULAR,p.TELEFONEFIXO,e.ENTIDADE_ID "
-                + "from APP.MEDICO as m,APP.USUARIO as a,APP.PESSOA as p,APP.ENTIDADE as e "
-                + "where m.USUARIO_ID = a.PESSOA_ID "
-                + "and a.PESSOA_ID = p.ENTIDADE_ID "
-                + "and p.ENTIDADE_ID = e.ENTIDADE_ID ";
-        Collection<Medico> toReturn = em.createNativeQuery(query, Medico.class).getResultList();
+        Collection<Medico> toReturn = em.createQuery("select a FROM Medico a",Medico.class).getResultList();        
+        em.getTransaction().commit();
         return toReturn;
-    }
+   }
 
     public Boolean removerMedico(Integer id) {
         em.getTransaction().begin();
@@ -82,6 +77,7 @@ public class ControleRepositorio {
                 + "and a.PESSOA_ID = p.ENTIDADE_ID "
                 + "and p.ENTIDADE_ID = e.ENTIDADE_ID ";
         Collection<Secretaria> toReturn = em.createNativeQuery(query, Secretaria.class).getResultList();
+        em.getTransaction().commit();
         return toReturn;
     }
 
@@ -121,6 +117,7 @@ public class ControleRepositorio {
                 + "from APP.PACIENTE as pa,APP.PESSOA as p,APP.ENTIDADE as e "
                 + "where pa.PESSOA_ID = p.ENTIDADE_ID and p.ENTIDADE_ID = e.ENTIDADE_ID";
         Collection<Paciente> toReturn = em.createNativeQuery(query, Paciente.class).getResultList();
+        em.getTransaction().commit();
         return toReturn;
 
     }
@@ -158,6 +155,7 @@ public class ControleRepositorio {
                 + "from APP.CONSULTA as c,APP.ENTIDADE as e "
                 + "where c.ENTIDADE_ID = e.ENTIDADE_ID";
         Collection<Consulta> toReturn = em.createNativeQuery(query, Paciente.class).getResultList();
+        em.getTransaction().commit();
         return toReturn;
     }
 
