@@ -42,7 +42,7 @@ public class ControlePaciente extends ControlePessoa{
     }
     
     public Boolean remover(Integer id) {
-        return this.repositorio.removerMedico(id);
+        return this.repositorio.removerPaciente(id);
     }
     
     public void adicionarProntuario(Prontuario prontuario,Paciente pacienteBusca){

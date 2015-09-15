@@ -19,7 +19,7 @@ public class ControleRepositorio {
         if (entidade.getId() == null) {
             em.persist(entidade);
         } else {
-            entidade = em.merge(entidade);
+            em.merge(entidade);
         }
         em.getTransaction().commit();
         return entidade.getId() != null;
@@ -41,6 +41,7 @@ public class ControleRepositorio {
 
     public Boolean removerMedico(Integer id) {
         em.getTransaction().begin();
+        
         Medico toRemove = em.find(Medico.class, id);
         Boolean toReturn = toRemove != null;
         em.remove(toRemove);
@@ -69,14 +70,17 @@ public class ControleRepositorio {
 
     public Collection<Secretaria> pegarValoresSecretaria() {
         em.getTransaction().begin();
-        String query = "select a.LOGIN, a.SENHA, m.CRM, m.ESPECIALIZACAO,"
-                + "p.CPF,p.DATANASCIMENTO,p.EMAIL,p.ENDERECO,p.NOME,p.RG,"
-                + "p.SOBRENOME,p.TELEFONECELULAR,p.TELEFONEFIXO,e.ENTIDADE_ID "
-                + "from APP.MEDICO as m,APP.USUARIO as a,APP.PESSOA as p,APP.ENTIDADE as e "
-                + "where m.USUARIO_ID = a.PESSOA_ID "
-                + "and a.PESSOA_ID = p.ENTIDADE_ID "
-                + "and p.ENTIDADE_ID = e.ENTIDADE_ID ";
-        Collection<Secretaria> toReturn = em.createNativeQuery(query, Secretaria.class).getResultList();
+//        String query = "select a.LOGIN, a.SENHA, m.CRM, m.ESPECIALIZACAO,"
+//                + "p.CPF,p.DATANASCIMENTO,p.EMAIL,p.ENDERECO,p.NOME,p.RG,"
+//                + "p.SOBRENOME,p.TELEFONECELULAR,p.TELEFONEFIXO,e.ENTIDADE_ID "
+//                + "from APP.MEDICO as m,APP.USUARIO as a,APP.PESSOA as p,APP.ENTIDADE as e "
+//                + "where m.USUARIO_ID = a.PESSOA_ID "
+//                + "and a.PESSOA_ID = p.ENTIDADE_ID "
+//                + "and p.ENTIDADE_ID = e.ENTIDADE_ID ";
+//        Collection<Secretaria> toReturn = em.createNativeQuery(query, Secretaria.class).getResultList();
+//        
+        Collection<Secretaria> toReturn = em.createQuery("select a FROM Secretaria a",Secretaria.class).getResultList();        
+
         em.getTransaction().commit();
         return toReturn;
     }
@@ -96,7 +100,7 @@ public class ControleRepositorio {
         if (entidade.getId() == null) {
             em.persist(entidade);
         } else {
-            entidade = em.merge(entidade);
+            em.merge(entidade);
         }
         em.getTransaction().commit();
         return entidade.getId() != null;
@@ -110,13 +114,16 @@ public class ControleRepositorio {
     }
 
     public Collection<Paciente> pegarValoresPaciente() {
-        String query = "select pa.ALERGIAS,pa.BEBE,pa.CIRURGIAS,pa.COLESTEROL,"
-                + "pa.CONVENIO,pa.DIABETES,pa.DOENCASCARDIACAS,pa.FUMA,p.CPF,"
-                + "p.DATANASCIMENTO,p.EMAIL,p.ENDERECO,p.NOME,p.RG,p.SOBRENOME,"
-                + "p.TELEFONECELULAR,p.TELEFONEFIXO,e.ENTIDADE_ID "
-                + "from APP.PACIENTE as pa,APP.PESSOA as p,APP.ENTIDADE as e "
-                + "where pa.PESSOA_ID = p.ENTIDADE_ID and p.ENTIDADE_ID = e.ENTIDADE_ID";
-        Collection<Paciente> toReturn = em.createNativeQuery(query, Paciente.class).getResultList();
+//        String query = "select pa.ALERGIAS,pa.BEBE,pa.CIRURGIAS,pa.COLESTEROL,"
+//                + "pa.CONVENIO,pa.DIABETES,pa.DOENCASCARDIACAS,pa.FUMA,p.CPF,"
+//                + "p.DATANASCIMENTO,p.EMAIL,p.ENDERECO,p.NOME,p.RG,p.SOBRENOME,"
+//                + "p.TELEFONECELULAR,p.TELEFONEFIXO,e.ENTIDADE_ID "
+//                + "from APP.PACIENTE as pa,APP.PESSOA as p,APP.ENTIDADE as e "
+//                + "where pa.PESSOA_ID = p.ENTIDADE_ID and p.ENTIDADE_ID = e.ENTIDADE_ID";
+//        Collection<Paciente> toReturn = em.createNativeQuery(query, Paciente.class).getResultList();
+//       
+                Collection<Paciente> toReturn = em.createQuery("select a FROM Paciente a",Paciente.class).getResultList();        
+
         em.getTransaction().commit();
         return toReturn;
 
@@ -124,7 +131,8 @@ public class ControleRepositorio {
 
     public Boolean removerPaciente(Integer id) {
         em.getTransaction().begin();
-        Secretaria toRemove = em.find(Secretaria.class, id);
+        System.out.println(id);
+        Paciente toRemove = em.find(Paciente.class, id);
         Boolean toReturn = toRemove != null;
         em.remove(toRemove);
         em.getTransaction().commit();
@@ -137,7 +145,7 @@ public class ControleRepositorio {
         if (entidade.getId() == null) {
             em.persist(entidade);
         } else {
-            entidade = em.merge(entidade);
+            em.merge(entidade);
         }
         em.getTransaction().commit();
         return entidade.getId() != null;
@@ -151,10 +159,11 @@ public class ControleRepositorio {
     }
 
     public Collection<Consulta> pegarValoresConsulta() {
-        String query = "select c.\"DATA\",c.HORA,c.TIPO,e.ENTIDADE_ID "
-                + "from APP.CONSULTA as c,APP.ENTIDADE as e "
-                + "where c.ENTIDADE_ID = e.ENTIDADE_ID";
-        Collection<Consulta> toReturn = em.createNativeQuery(query, Paciente.class).getResultList();
+//        String query = "select c.\"DATA\",c.HORA,c.TIPO,e.ENTIDADE_ID "
+//                + "from APP.CONSULTA as c,APP.ENTIDADE as e "
+//                + "where c.ENTIDADE_ID = e.ENTIDADE_ID";
+//        Collection<Consulta> toReturn = em.createNativeQuery(query, Paciente.class).getResultList();
+        Collection<Consulta> toReturn = em.createQuery("select a FROM Consulta a",Consulta.class).getResultList();        
         em.getTransaction().commit();
         return toReturn;
     }

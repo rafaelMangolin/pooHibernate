@@ -4,22 +4,25 @@ import Util.DataHoraUtil;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+@PrimaryKeyJoinColumn(name="ENTIDADE_ID")
 public class Consulta extends Entidade{
     @Temporal(value=TemporalType.DATE)
     private Date data;
     @Column(nullable = false)
     private String hora;
     @JoinColumn(nullable = false)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Medico medico;
     @JoinColumn(nullable = false)
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Paciente paciente;
     @Column(nullable = false)
     private String tipo;
